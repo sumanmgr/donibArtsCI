@@ -4,8 +4,5 @@ ths is a test file for git hub
 EDITED BY SUNITA TIWARI
 
 
-<<<<<<< HEAD
-this line is by me sushmita
 =======
 this line is by me SUNITA tIWARI
->>>>>>> origin/master
