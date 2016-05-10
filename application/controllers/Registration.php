@@ -55,7 +55,7 @@ class Registration extends CI_Controller{
 	$this->load->view('shared/htmlFoot');
   }
 
-  function login(){
+  public function login(){
   	if($this->session->has_userdata('user')){
  		redirect(site_url('home'));
  	}

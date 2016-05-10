@@ -7,6 +7,7 @@ class Contact extends CI_Controller {
   	);
 	if($this->session->has_userdata('user')){
 		$data['user'] = $this->session->userdata['user'];
+		$data['visibleUserMenu'] = false;
 	}
   	$this->load->view('mainview', $data);
  }

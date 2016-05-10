@@ -12,6 +12,12 @@
 		return $query->result();	
 	}
 
+	function getAllPhotographers(){
+		$this->db->where('user_type', 'p');
+		$query =  $this->db->get('user');
+		return $query->result();	
+	}
+
 	function addUser($userData){
 		$this->db->insert('user', $userData);
 		if ($this->db->affected_rows()	>0){

@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendors/jquery-1.11.0.min.js"></script>
 
 		<!-- Bootstrap Js -->
-	    <script type="text/javascript" src="http://localhost/donibarts-ci/assets/admin/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/bootstrap.min.js"></script>
 
 		<!-- imagesLoaded jquery plugin -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendors/imagesloaded.pkgd.min.js"></script>
@@ -57,7 +57,12 @@
 		<!-- theme custom scripts -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
-		<!-- /JavaScript files -->	
+		<!-- /JavaScript files -->
+        <script>
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+        </script>	
 		
     </body>
 </html>

@@ -3,3 +3,7 @@ body{font-family:ralewayregular,sans-serif;font-size:14px;background:#fafaf5;ove
 .no-row-margin .row{
 	margin: 0 !important
 }
+
+.margin-bottom-only{
+	margin: 0  0 15px 0 !important;
+}

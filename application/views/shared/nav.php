@@ -62,8 +62,8 @@
 		
 <!-- Page main wrapper -->
 		<div id="main-content" class="abs dark-template">
-			<div class="page-wrapper regular-page">
-			<?php if(isset($user)) : ?>
+			<div class="page-wrapper">
+			<?php if(isset($user) && !(isset($visibleUserMenu) && !($visibleUserMenu)) ) : ?>
 				<!-- Sidebar -->
                 
 				<div class="page-side ajax-element">
@@ -76,7 +76,7 @@
 							<div class="col-md-12">
 								<div class="team-item">
 									<div class="team-head">
-										<img src="assets/img/team/abc.jpg" alt="">
+										<img src="<?php echo site_url('assets/img/team/abc.jpg');?>" alt="">
 										<ul class="team-socials">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -103,9 +103,9 @@
 								<ul class="">
 								  <li class="active"><a href="#" data-filter="*">My profile</a></li>
 								  <?php if($user->user_type == 'p') :?>
-								  <li class="active"><a href="#" data-filter="*">Bookings</a></li>
-								  <li><a href="#" data-filter=".web-design">Create Gallery</a></li>
-								  <li><a href="#" data-filter=".web-design">Add Photo</a></li>
+								  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">Bookings</a></li>
+								  <li><a href="<?php echo site_url("account/create-gallery");?>" data-filter=".web-design">Create Gallery</a></li>
+								  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">View Gallery</a></li>
 								  <?php else : ?>
 								  <li class="active"><a href="#" data-filter="*">My Booking</a></li>
 								  <li><a href="#" data-filter=".web-design">My Gallery</a></li>
