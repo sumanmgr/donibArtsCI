@@ -10,6 +10,8 @@
         <!-- CSS styles -->
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/base.css">
       	<!-- /CSS styles -->
+         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.datetimepicker.min.css">
+         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-switch.min.css">
 
     </head>
     <body>

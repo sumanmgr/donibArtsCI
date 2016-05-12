@@ -4,6 +4,10 @@
 			$this->load->view('modal/userlogin-modal'); 
 			endif;
 		?>
+        <?php if(isset($user)) :
+			$this->load->view('modal/userPhoto-modal'); 
+			endif;
+		?>
 		<!-- JavaScript files -->	
 
 		<!-- jquery core -->
@@ -48,11 +52,19 @@
 		<!-- smooth scroll -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendors/smoothscroll.js"></script>
 
-		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=en"></script>
+		<script type="text/javascript" src="assets/js/vendors/gmap3.min.js"></script>
+
 
 		<!-- Master Slider -->
 		<script src="<?php echo base_url(); ?>assets/masterslider/jquery.easing.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/masterslider/masterslider.min.js"></script>
+
+		<!-- date picker -->        
+         <script src="<?php echo base_url(); ?>assets/js/jquery.datetimepicker.min.js"></script>
+         
+         <script src="<?php echo base_url(); ?>assets/js/bootstrap-switch.min.js"></script>
+
 		
 		<!-- theme custom scripts -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
@@ -60,7 +72,9 @@
 		<!-- /JavaScript files -->
         <script>
 		$(function () {
-		  $('[data-toggle="tooltip"]').tooltip()
+			jQuery('[data-toggle="tooltip"]').tooltip();
+		    jQuery('#datetimepicker, #datetimepicker2').datetimepicker();
+			$("[name='gallery_access']").bootstrapSwitch();
 		})
         </script>	
 		

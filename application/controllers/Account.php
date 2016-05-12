@@ -10,6 +10,7 @@ class Account extends CI_Controller{
 	 	else $this->data['user']= $this->session->userdata['user'];
         $this->load->model('user');
         $this->load->model('gallery');
+        $this->load->model('booking');
 	}
 
 	function index(){
@@ -51,9 +52,68 @@ class Account extends CI_Controller{
   		$this->load->view('mainview', $this->data);
 	}
 	function booking($photographerId = 0){
+		
 		$this->data['page'] = "booking";
+		$this->data['photographer'] = $this->user->getPhotographerById($photographerId);
+		
+		if($this->input->post('book') == 'bookPhotographer'){
+			$bookingDetail = array(
+				'book_start_date_time' => $this->input->post('startDateTime'),
+				'book_end_date_time'   => $this->input->post('endDateTime'),
+				'booking_status'       => 0,
+				'booking_title'       => $this->input->post('bookingTitle'),
+				'customer_id'          => $this->data['user']->user_id,
+				'photographer_id'      => $this->input->post('photographer_id'),
+				'booking_details'      => $this->input->post('bookingDescription'),
+				'gallery_access_type'  => isset($_POST['gallery_access']) ? 1 : 0
+			);
+			$bookingId = $this->booking->saveBooking($bookingDetail);
+		}
+		
   		$this->load->view('mainview', $this->data);
 	}
+	
+	function my_booking(){
+		
+		$this->data['page'] = "my_booking";
+		
+		$this->data['bookings'] = 
+			($this->data['user']->user_type == 'c')								?
+			$this->booking->getCustomerBookings($this->data['user']->user_id)   :
+			$this->booking->getPhotograperBookings($this->data['user']->user_id);   
+			
+				
+  		$this->load->view('mainview', $this->data);
+	}
+	
+	function cancel_booking($booking_id = 0){
+		if($booking_id >0){
+			$booking_data = array(
+				'booking_status' =>  ($this->data['user']->user_type == 'c') ? 2 : 3,
+			);
+			$booking = $this->booking->getBookingById($booking_id);
+			
+			if($booking && ( $booking->customer_id == $this->data['user']->user_id || $booking->photographer_id == $this->data['user']->user_id ) && $booking->booking_status == 0 ){
+				$this->booking->updateBooking($booking_data, $booking_id);
+			}
+		}
+		redirect("account/my-booking");
+	}
+	
+	function accept_booking($booking_id = 0){
+		if($booking_id >0){
+			$booking_data = array(
+				'booking_status' =>  1 ,
+			);
+			$booking = $this->booking->getBookingById($booking_id);
+			
+			if($booking && $booking->photographer_id == $this->data['user']->user_id  && $booking->booking_status == 0 ){
+				$this->booking->updateBooking($booking_data, $booking_id);
+			}
+		}
+		redirect("account/my-booking");
+	}
+	
 	function gallery($gallery_id = 0){
 		if($gallery_id > 0 ){
 			$this->data['page'] = "photoGallery";
@@ -81,6 +141,39 @@ class Account extends CI_Controller{
 		
 		
 		$this->load->view('mainview', $this->data);
+	}
+	
+	function updatePicture(){	
+			$this->data['user'] = $this->session->userdata['user'];
+			if($this->input->post('post') == 'addPhoto'){
+				if (!is_dir('./uploads/'.$this->data['user']->user_id)) {
+					mkdir('./uploads/' .$this->data['user']->user_id, 0777, TRUE);
+				}
+				$config['upload_path'] = './uploads/'.$this->data['user']->user_id.'/';
+				
+				$config['allowed_types'] = 'jpg';
+				$config['max_size']	= '6000';
+				$config['max_width']  = '6000';
+				$config['max_height']  = '4000';
+				$config['overwrite']  = TRUE;
+				$config['file_name']  = 'profile.jpg';
+		
+				$this->load->library('upload', $config);
+		
+				if ( ! $this->upload->do_upload('profilePic'))
+				{
+					$error = array('error' => $this->upload->display_errors());
+					var_dump($error);
+				}
+				else
+				{
+					$data = array('upload_data' => $this->upload->data());
+				}
+				redirect(site_url('home'));
+			
+		}
+		
+		
 	}
 	
 	function editGallery($id){

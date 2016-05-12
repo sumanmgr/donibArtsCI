@@ -9,11 +9,11 @@ class Photographer extends CI_Controller {
 
   function index(){
   	$data=array(
-  		'page' => 'photographer'
+  		'page' => 'photographer',
+		'photographers' => $this->user->getAllPhotographers()
   	);
 	if($this->session->has_userdata('user')){
 		$data['user'] = $this->session->userdata['user'];
-		$data['photographers'] = $this->user->getAllPhotographers();
 		$data['visibleUserMenu'] = false;
 	}
   	$this->load->view('mainview', $data);

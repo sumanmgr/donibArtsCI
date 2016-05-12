@@ -1,12 +1,6 @@
 				<div class="container">
 
-					<!-- breadcrumbs -->
-					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Pages</a></li>
-						<li class="active">About Donib Arts</li>
-					</ol>
-					<!--/ breadcrumbs -->
+					
 
 					
 					<!-- page title -->

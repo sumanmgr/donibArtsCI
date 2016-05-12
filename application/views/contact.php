@@ -14,20 +14,20 @@
 
 							<div class="contact-detail">
 								<h5 class="bordered-fine">Location</h5>
-								24 av. Merylton yard St. 3 56007 Barcelona
+								7/52 Park Road hurstville, NSW, 2220
 							</div>
 								
 							<div class="contact-detail">
 								<h5 class="bordered-fine">Contact</h5>
 								<ul class="list-iconed">
 									<li>
-										<i class="fa fa-envelope"></i>john@doe.com
+										<i class="fa fa-envelope"></i>info@donibarts.com
 									</li>
 									<li>
-										<i class="fa fa-phone"></i> +55586358-21
+										<i class="fa fa-phone"></i> +61 434 574 674
 									</li>
 									<li>
-										<i class="fa fa-phone"></i> +55586358-21
+										<i class="fa fa-phone"></i> +61 000 000 000 
 									</li>
 								</ul>
 							</div>
@@ -49,7 +49,9 @@
 				<!-- Sidebar -->
 
 				<!-- Main Content -->
-				
+                <div class="page-main">
+					<div id="gmap" class="gmap-full" data-address="52 park Road Hurstville NSW 2220"></div>
+				</div>
 				<!-- /Main Content -->
 
 			</div>

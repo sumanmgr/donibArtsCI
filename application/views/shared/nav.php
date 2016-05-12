@@ -76,11 +76,18 @@
 							<div class="col-md-12">
 								<div class="team-item">
 									<div class="team-head">
-										<img src="<?php echo site_url('assets/img/team/abc.jpg');?>" alt="">
+                                    	<?php
+                                        $imgSrc = site_url('assets/img/team/abc.jpg');
+										if (file_exists('./uploads/'.$user->user_id.'/profile.jpg')){
+											$imgSrc = site_url('uploads/'.$user->user_id.'/profile.jpg');
+										}
+										?>
+                                        
+										<img src="<?php echo $imgSrc;?>" alt="">
 										<ul class="team-socials">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 											<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li> <a href="#" data-toggle="modal" data-target=".addPhoto-modal-lg"><i class="fa fa-plus" data-toggle="tooltip" data-placement="top"  title="Add Prfofile picture"></i></a></li>
 										</ul>
 									</div>
 
@@ -101,13 +108,13 @@
                             
 								<a href="#" class="select-filter"><i class="fa fa-filter"></i> My Menu</a>
 								<ul class="">
-								  <li class="active"><a href="#" data-filter="*">My profile</a></li>
+								  <li class="active"><a href="<?php echo site_url("home");?>" data-filter="*">My profile</a></li>
 								  <?php if($user->user_type == 'p') :?>
 								  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">Bookings</a></li>
 								  <li><a href="<?php echo site_url("account/create-gallery");?>" data-filter=".web-design">Create Gallery</a></li>
 								  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">View Gallery</a></li>
 								  <?php else : ?>
-								  <li class="active"><a href="#" data-filter="*">My Booking</a></li>
+								  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">My Bookings</a></li>
 								  <li><a href="#" data-filter=".web-design">My Gallery</a></li>
 								  <?php endif; ?>
 								  <li><a href="<?php echo site_url("logout");?>">Logout</a></li>

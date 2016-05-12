@@ -23,8 +23,14 @@
 		if ($this->db->affected_rows()	>0){
 			return $this->db->insert_id();
 		}
-
-		return false;
+		
+			return false;
+	}
+	function getPhotographerById($id){
+		$this->db->where('user_type', 'p');
+		$this->db->where('user_id', $id);
+		$query =  $this->db->get('user');
+		return $query->row();	
 	}
 }
 ?>
