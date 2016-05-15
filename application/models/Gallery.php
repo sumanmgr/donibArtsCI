@@ -42,7 +42,7 @@ class Gallery extends CI_Model{
 		$this->db->join('customergallery', 'gallery.gallery_id = customergallery.galleryID');
 		$this->db->join('booking', 'customergallery.bookingId = booking.booking_id');
 		$this->db->where('booking.gallery_access_type', 1); // public gallery
-		$this->db->where('boooking.photographer_id', $photographerId);
+		$this->db->where('booking.photographer_id', $photographerId);
 		return $this->db->get()->result();
 	}
 	function getCustomerGalleries($customerId){
