@@ -21,7 +21,9 @@
 	
 	
 	function getPhotograperBookings($photogapherId){
-		$this->db->where('photographer_id',$photogapherId);
+		$this->db->join('customergallery','customergallery.bookingId = booking.booking_id', 'left');
+		$this->db->join('gallery','gallery.gallery_id = customergallery.galleryId', 'left');
+		$this->db->where('booking.photographer_id',$photogapherId);
 		$this->db->order_by('booking_date_time',"DESC");
 		$this->db->join('user','user.user_id = booking.customer_id');
 		$bookings =  $this->db->get('booking')->result();
@@ -30,6 +32,11 @@
 	}
 	
 	function getBookingById($booking_id){
+		$this->db->where('booking_id', $booking_id);
+		return $this->db->get('booking')->row();
+	}
+	function getBookingByIdWithCustomer($booking_id){
+		$this->db->join('user','user.user_id = booking.customer_id');
 		$this->db->where('booking_id', $booking_id);
 		return $this->db->get('booking')->row();
 	}

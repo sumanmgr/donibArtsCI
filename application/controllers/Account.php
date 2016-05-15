@@ -4,7 +4,9 @@ class Account extends CI_Controller{
 	function __construct(){
         // Call the Model constructor
         parent::__construct();
+			
 	 	if(!$this->session->has_userdata('user')){
+			if($this->router->fetch_method() != 'view_gallery' )
 	 		redirect(site_url());
 	 	}	
 	 	else $this->data['user']= $this->session->userdata['user'];
@@ -17,21 +19,14 @@ class Account extends CI_Controller{
 		$user =  $this->session->userdata('user');
 		var_dump($user);
 	}
-	function create_gallery(){
+	function create_gallery($bookingId = 0){
 		$this->data['page'] = "newGallery";
-	  	$data=array(
-  			'page' => 'about'
-	  	);
-		if($this->session->has_userdata('user')){
-			$data['user'] = $this->session->userdata['user'];
-			$data['visibleUserMenu'] = false;
-		}
 		if($this->input->post('gallery') == 'newGallery'){
 			$gallery = array(
 				'gallery_name'        => $this->input->post('galleryName'),
 				'gallery_description' => $this->input->post('galleryDescription'),
 				'gallery_type'        => $this->input->post('galleryType'),
-				'photographer_id'     => $data['user']->user_id,
+				'photographer_id'     => $this->data['user']->user_id,
 				
 			);
 			$bookingId = $this->input->post('galleryBooking');
@@ -41,14 +36,15 @@ class Account extends CI_Controller{
 			if($galleryId > 0){
 				$this->data['messageType'] = 'success';
 				$this->data['message']     = 'Gallery '.$gallery['gallery_name'].' created successfully';
-				redirect('account/editGallery/'.$galleryId);
+				redirect('account/edit-gallery/'.$galleryId);
 			}
 			else{
 				$this->data['messageType'] = 'error';
 				$this->data['message']     = 'There was a problem creating Gallery. Please try again.';
 			}
 		}
-		
+		if($bookingId >0 )
+		$this->data['booking'] = $this->booking->getBookingByIdWithCustomer($bookingId);
   		$this->load->view('mainview', $this->data);
 	}
 	function booking($photographerId = 0){
@@ -61,7 +57,7 @@ class Account extends CI_Controller{
 				'book_start_date_time' => $this->input->post('startDateTime'),
 				'book_end_date_time'   => $this->input->post('endDateTime'),
 				'booking_status'       => 0,
-				'booking_title'       => $this->input->post('bookingTitle'),
+				'booking_title'        => $this->input->post('bookingTitle'),
 				'customer_id'          => $this->data['user']->user_id,
 				'photographer_id'      => $this->input->post('photographer_id'),
 				'booking_details'      => $this->input->post('bookingDescription'),
@@ -128,15 +124,31 @@ class Account extends CI_Controller{
 		
 		$this->data=array(
   			'page'       => $id > 0 ? 'viewAlbum' : 'viewGallery',
-			'user'       => $this->session->userdata['user'],
-			'gallery'    => $this->gallery->getGallery($id),
 	  	);	
-		
+		if($this->session->has_userdata('user'))
+			$this->data['user'] = $this->session->userdata['user'];
+			
 		if($id>0){
-			$this->data['photos'] =  $this->gallery->getPhotoByGallery($id);
+			$this->data['gallery'] = $this->gallery->getGallery($id);
+			
+			if(
+				$this->gallery->isPublic($id) //gallery is public
+				|| 
+				($this->data['gallery']->gallery_type==0) //gallery is portfolio // accessible to everyone
+				|| 
+				($this->session->has_userdata('user') && $this->data['user']->user_id == $this->data['gallery']->photographer_id) // gallery is created by photograper
+				||
+				($this->session->has_userdata('user') && $this->gallery->checkCustomerGallery($this->data['user']->user_id, $id))
+			)
+				$this->data['photos']  =  $this->gallery->getPhotoByGallery($id);
+			else redirect(site_url('home'));
 		}
 		else{
-			$this->data['galleries'] =  $this->gallery->getGalleriesByPhotographerId($this->data['user']->user_id);
+			
+			$this->data['galleries'] = $this->data['user']->user_type == 'p' ? $this->gallery->getGalleriesByPhotographerId($this->data['user']->user_id) : $this->gallery->getCustomerGalleries($this->data['user']->user_id);
+			for($i = 0 ; $i<count($this->data['galleries']); $i++){
+				$this->data['galleries'][$i]->photo = $this->gallery->getRandomPhoto($this->data['galleries'][$i]->gallery_id);
+			}
 		}
 		
 		
@@ -176,7 +188,8 @@ class Account extends CI_Controller{
 		
 	}
 	
-	function editGallery($id){
+	function edit_gallery($id = 0){
+		if($id == 0) $id = $this->gallery->getPhotographerPortfolioId($this->data['user']->user_id);
 		$gallery = $this->gallery->getGallery($id);	  	
 		$this->data=array(
   			'page' => 'editGallery',

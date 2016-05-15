@@ -39,7 +39,7 @@
 						</div>
 
 						<div class="col-md-4">
-							<h3 class="bordered">Profile Details</h3>
+							<h3 class="bordered">Profile Details <a href="#" class="" data-toggle="modal" data-target=".editProfileModal" ><i class="fa fa-edit"></i> Edit</a></h3>
 							<ul class="list-items">
 								<li>
 									<div class="list-label">Full Name</div>
@@ -51,7 +51,7 @@
 								</li>
 								<li>
 									<div class="list-label">Mobile</div>
-									<div class="list-des"><?php echo $user->phone_number?></div>
+									<div class="list-des"><?php echo $user->mobile?></div>
 								</li>
 								<li>
 									<div class="list-label">Email</div>
@@ -61,10 +61,16 @@
 									<div class="list-label">Username</div>
 									<div class="list-des"><?php echo $user->username?></div>
 								</li>
+                                <?php if($user->user_type == 'c' ) : ?>
                                 <li>
-									<div class="list-label">Customer Count</div>
-									<div class="list-des"><?php echo $user->username?></div>
+									<div class="list-label">Reward Point</div><!-- from customer table -->
+									<div class="list-des"><?php echo $rewardData->reward_point?></div>
 								</li>
+	                           <li>
+									<div class="list-label">Refrence</div><!-- from customer table -->
+									<div class="list-des"><?php echo $rewardData->refrence?></div>
+								</li>
+                                <?php endif; ?>
 							</ul>
 						</div>
 

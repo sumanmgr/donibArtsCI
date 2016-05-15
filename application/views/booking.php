@@ -14,6 +14,7 @@
                                 <div class="col-sm-6">
                                   <input type="text" class="form-control" name="bookingTitle" id="inputPassword3" placeholder="Booking Title" />
                                 </div>
+                               </div>
                               <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-4 control-label">Date &nbsp; Time</label>
                                 <div class="col-sm-6">

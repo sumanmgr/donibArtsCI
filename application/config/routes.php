@@ -52,6 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['login'] = 'registration/login';
 $route['logout'] = 'registration/logout';
 
+$route['portfolio'] = 'account/edit-gallery';
+$route['portfolio/(:any)'] = 'portfolio/index/$1';
+
 $route['admin/login'] = 'admin/users/login';
 $route['admin/logout'] = 'admin/users/logout';
 

@@ -15,15 +15,7 @@
 
 						<!-- Navigation -->	
 						<ul id="navigation">
-							<li class="menu-item-has-children current-menu-parent"><a href="#">Home</a>
-								<ul class="sub-menu">
-									<li class="nav-prev"><a href="#"><i class="fa fa-angle-left"></i>Home</a></li>
-									<li class="current-menu-item"><a href="<?php echo site_url(); ?>about">ABout</a></li>
-									<li><a href="../pages/home-2.html">Fullscreen Portfolio</a></li>
-									<li><a href="../pages/home-3.html">Page with MasterSlider</a></li>
-									<li><a href="../pages/home-4.html">Animated Captions KenBurn</a></li>
-								</ul>
-							</li>
+							<li><a href="<?php echo site_url(); ?>">Home</a></li>
 							<li><a href="<?php echo site_url(); ?>about">About Us</a></li>
 
 							<li><a href="<?php echo site_url(); ?>photographer">Photographer</a></li>
@@ -85,8 +77,8 @@
                                         
 										<img src="<?php echo $imgSrc;?>" alt="">
 										<ul class="team-socials">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+											<li><a href="http://www.facebook.com/<?php echo $user->facebook?>"><i class="fa fa-facebook"></i></a></li>
+											<li><a href="http://www.instagram.com/<?php echo $user->instagram?>"><i class="fa fa-instagram"></i></a></li>
                                             <li> <a href="#" data-toggle="modal" data-target=".addPhoto-modal-lg"><i class="fa fa-plus" data-toggle="tooltip" data-placement="top"  title="Add Prfofile picture"></i></a></li>
 										</ul>
 									</div>
@@ -104,22 +96,22 @@
                  <!-- end of div -->
                 
                 			
-							<div class="grid-filters-wrapper">
-                            
-								<a href="#" class="select-filter"><i class="fa fa-filter"></i> My Menu</a>
-								<ul class="">
-								  <li class="active"><a href="<?php echo site_url("home");?>" data-filter="*">My profile</a></li>
-								  <?php if($user->user_type == 'p') :?>
-								  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">Bookings</a></li>
-								  <li><a href="<?php echo site_url("account/create-gallery");?>" data-filter=".web-design">Create Gallery</a></li>
-								  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">View Gallery</a></li>
-								  <?php else : ?>
-								  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">My Bookings</a></li>
-								  <li><a href="#" data-filter=".web-design">My Gallery</a></li>
-								  <?php endif; ?>
-								  <li><a href="<?php echo site_url("logout");?>">Logout</a></li>
-								</ul>
-							</div>
+            <div class="grid-filters-wrapper">
+            
+                <a href="#" class="select-filter"><i class="fa fa-filter"></i> My Menu</a>
+                <ul class="">
+                  <li class="active"><a href="<?php echo site_url("home");?>" data-filter="*">My profile</a></li>
+                  <?php if($user->user_type == 'p') :?>
+                  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">Bookings</a></li>
+                  <li><a href="<?php echo site_url("portfolio");?>" data-filter=".web-design">Portfolio</a></li>
+                  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">View Gallery</a></li>
+                  <?php else : ?>
+                  <li class="active"><a href="<?php echo site_url("account/my-booking");?>" data-filter="*">My Bookings</a></li>
+                  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">My Gallery</a></li>
+                  <?php endif; ?>
+                  <li><a href="<?php echo site_url("logout");?>">Logout</a></li>
+                </ul>
+            </div>
 						</div>
 					</div>
 				</div>

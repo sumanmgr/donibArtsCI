@@ -1,6 +1,6 @@
 
-				<div class="page-main ajax-element"><!-- page title -->
-					<div class="çontainer">
+				<div class="<?php if(isset($user)) echo "page-main ajax-element" ; ?>"><!-- page title -->
+					<div class="container">
 					<h2 class="section-title double-title">
 						View Gallery
 					</h2>
@@ -23,8 +23,9 @@
 							<div class="col-md-4">
 								<div class="team-item">
 									<div class="team-head">
-										<img src="<?php echo site_url('assets/img/team/abc.jpg');?>" alt="">
-										
+                                    	<?php if($gallery->photo) : ?>
+										<img src="<?php echo site_url('uploads/'.$gallery->photographer_id.'/'.$gallery->gallery_id.'/'.$gallery->photo->file_name);?>" alt="">
+                                        <?php endif;?>
 									</div>
 
 									<div class="team-content">

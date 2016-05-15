@@ -7,3 +7,23 @@ body{font-family:ralewayregular,sans-serif;font-size:14px;background:#fafaf5;ove
 .margin-bottom-only{
 	margin: 0  0 15px 0 !important;
 }
+
+.panel-heading .head{
+	line-height: 33px;
+}
+
+.panel-heading .btn{	
+	padding: 6px 12px;
+}
+
+.panel-body p{
+	color: #333;
+}
+
+.panel-body b{
+	display:inline-block;
+	width: 160px;
+}
+.page-main.ajax-element > .container{
+	width: auto;
+}

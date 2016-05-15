@@ -1,19 +1,22 @@
 
-				<div class="page-main ajax-element"><!-- page title -->
-					<div class="çontainer">
+				<div class="<?php if(isset($user)) echo "page-main ajax-element" ; ?>"><!-- page title -->
+					<div class="container">
 					<h2 class="section-title double-title">
 						View Gallery
 					</h2>
-                    <?php if($user->user_id == $gallery->photographer_id) :?>
-                    <a href="<?php echo site_url('account/editGallery/'.$gallery->gallery_id);  ?>" class="btn btn-primary">Edit Gallery</a>
+                    <?php if(isset($user) && $user->user_id == $gallery->photographer_id) :?>
+                    <a href="<?php echo site_url('account/edit-gallery/'.$gallery->gallery_id);  ?>" class="btn btn-primary">Edit Gallery</a>
                     <hr />
+                    <h5><?php echo $gallery->gallery_name;?></h5><br />
 					<?php endif; ?>
 							<div class="grid-portfolio tj-lightbox-gallery same-ratio-items">
+                            
+                            
                     		<?php foreach($photos as $photo) : ?>
 								<!-- Gallery Item -->		
 								<div class="gp-item tj-hover-5">
-									<a href="<?php echo site_url('uploads/'.$user->user_id.'/'.$gallery->gallery_id.'/'.$photo->file_name);?>"  class="lightbox-gallery-item">
-										<img src="<?php echo site_url('uploads/'.$user->user_id.'/'.$gallery->gallery_id.'/'.$photo->file_name);?>" alt="">
+									<a href="<?php echo site_url('uploads/'.$gallery->photographer_id.'/'.$gallery->gallery_id.'/'.$photo->file_name);?>"  class="lightbox-gallery-item">
+										<img src="<?php echo site_url('uploads/'.$gallery->photographer_id.'/'.$gallery->gallery_id.'/'.$photo->file_name);?>" alt="">
 										<!-- Item Overlay -->	
 										<div class="tj-overlay"></div>
 										<!-- /Item Overlay -->	

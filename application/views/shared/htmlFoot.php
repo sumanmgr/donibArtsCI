@@ -1,7 +1,7 @@
 			</div>
 		</div>
 		<?php if(isset($modal)) :
-			$this->load->view('modal/userlogin-modal'); 
+			$this->load->view('modal/'.$modal); 
 			endif;
 		?>
         <?php if(isset($user)) :
