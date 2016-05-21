@@ -8,7 +8,8 @@ class Home extends CI_Controller {
   	);
 
 	if($this->session->has_userdata('user')){
-		$data['user'] = $this->session->userdata['user'];
+		$data['user']      = $this->session->userdata['user'];
+		$data['otherdata'] = $this->user->getOtherDetail($data['user']);
 		
 		if($this->input->post('update')=='post'){
 						
@@ -21,14 +22,17 @@ class Home extends CI_Controller {
 				'instagram' => $this->input->post('instagram'),
 			);
 			if($data['user']->user_type == 'p'){
-				$datavalue = $this->input->post('experties');
+				$datavalue = array(
+				'experties'   =>$this->input->post('experties'),
+				'perHourRate' =>$this->input->post('perHourRate'),
+				);
+				
 			}
 			else{	
 				$datavalue = $this->input->post('refrence');
 			}
 			if($this->user->updateUser($user, $data['user'], $datavalue)){
 		 		$this->session->set_userdata(array('user' => $this->user->getUserById($data['user']->user_id) ));
-				
 				$data['user'] = $this->session->userdata['user'];
 			}
 		}

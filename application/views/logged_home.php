@@ -61,6 +61,17 @@
 									<div class="list-label">Username</div>
 									<div class="list-des"><?php echo $user->username?></div>
 								</li>
+                                  <?php if($user->user_type == 'p' ) : ?>
+                                <li>
+									<div class="list-label">Experties</div><!-- from photographer table -->
+									<div class="list-des"><?php echo $otherdata->experties?></div>
+								</li>
+	                           <li>
+									<div class="list-label">Per Hour</div><!-- from photographer table -->
+									<div class="list-des"><?php echo $otherdata->perHourRate?></div>
+								</li>
+                                <?php endif; ?>
+
                                 <?php if($user->user_type == 'c' ) : ?>
                                 <li>
 									<div class="list-label">Reward Point</div><!-- from customer table -->

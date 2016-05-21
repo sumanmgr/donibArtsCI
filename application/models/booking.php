@@ -30,6 +30,13 @@
 		return $bookings;
 	
 	}
+
+	function getBookingByPhotographerDate($photogapherId, $start_date, $end_date){
+
+		$query = $this->db->query("SELECT * FROM booking where ($start_date > book_start_date_time AND $start_date <book_end_date_time) OR ($end_date > book_start_date_time AND $end_date < book_end_date_time) ");
+		return $query->result();
+	
+	}
 	
 	function getBookingById($booking_id){
 		$this->db->where('booking_id', $booking_id);
@@ -50,6 +57,20 @@
 		}
 		
 			return false;
+	}
+	
+	function makePayment($apymentData){
+		$this->db->insert('payment', $apymentData);
+		if($this->db->affected_rows() > 0 ){
+			$this->db->set('booking_status',4);
+			$this->db->where('booking_id', $apymentData['booking_id']);
+			$this->db->update('booking');
+			if($this->db->affected_rows() > 0 ){
+				return true;	
+			}
+			else echo $this->db->last_query();
+		}
+		return false;
 	}
 }
 ?>

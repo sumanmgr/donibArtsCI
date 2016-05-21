@@ -23,6 +23,12 @@
 		$query =  $this->db->get('user');
 		return $query->result();	
 	}
+	
+	function getOtherDetail($user){
+		$table  = ($user->user_type == 'p') ? 'photographer' : 'customer';
+			$this->db->where('user_id', $user->user_id);
+			return $this->db->get($table)->row();
+	}
 
 	function addUser($userData){
 		$this->db->insert('user', $userData);
@@ -50,21 +56,26 @@
 	function updateUser($userData, $user, $datavalue){
 		$this->db->where('user_id', $user->user_id);
 		$this->db->update('user', $userData);
-		echo $this->db->last_query();
+		$return = TRUE;
 		if ($this->db->affected_rows()	>0){
+			$return = TRUE;
+		}
 			if($user->user_type == 'p'){
+				$this->db->set('experties', $datavalue['experties']);
+				$this->db->set('perHourRate', $datavalue['perHourRate']);
 				$this->db->where('user_id',$user->user_id);
-				$this->db->update('photographer', array('experties'=>$datavalue));
+				$this->db->update('photographer');
 			}
 			if($user->user_type == 'c'){
+				$this->db->set('reference', $datavalue);
 				$this->db->where('user_id',$user->user_id);
-				$this->db->update('customer', array('refrence' => $datavalue));
+				$this->db->update('customer' );
 			}
-			
-			return TRUE;;
-		}
 		
-			return false;
+		if ($this->db->affected_rows()	>0){
+			$return = TRUE;
+		}
+			return $return;
 	}
 	function getPhotographerById($id){
 		$this->db->where('user_type', 'p');

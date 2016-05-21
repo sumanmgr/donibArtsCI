@@ -3,7 +3,7 @@
           <h2>My Booking</h2>
 		          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                       <?php	  
-					  $booking_status_values = array("Booking Pending", "Booking Confirmed", "Cancelled By Customer", "Rejected By Photographer");
+					  $booking_status_values = array("Booking Pending", "Booking Accepted", "Cancelled By Customer", "Rejected By Photographer", "Booking Confirmed");
 					  foreach($bookings as $booking):?>
                       <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="booking_<?php echo $booking->booking_id; ?>">
@@ -11,8 +11,8 @@
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $booking->booking_id; ?>" aria-expanded="false" aria-controls="collapse_<?php echo $booking->booking_id; ?>">
                               <?php echo $booking->booking_title; ?>
                               <?php if($booking->booking_status == 0) : ?>
-                              <a href="<?php echo site_url()?>account/cancel-booking/<?php echo $booking->booking_id?>" class="btn btn-primary pull-right"><?php echo $user->user_type ==  'c' ? "Cancel" : "Reject"?> Booking</a>
-                              <?php if($user->user_type ==  'p') : ?><a href="<?php echo site_url()?>account/accept-booking/<?php echo $booking->booking_id?>" class="btn btn-primary pull-right">Accept Booking</a>
+                              <a href="<?php echo site_url()?>reservations/cancel-booking/<?php echo $booking->booking_id?>" class="btn btn-primary pull-right"><?php echo $user->user_type ==  'c' ? "Cancel" : "Reject"?> Booking</a>
+                              <?php if($user->user_type ==  'p') : ?><a href="<?php echo site_url()?>reservations/accept-booking/<?php echo $booking->booking_id?>" class="btn btn-primary pull-right">Accept Booking</a>
                               <?php endif?>
                               <?php endif; ?>
                             </a>
@@ -34,6 +34,11 @@
                               <?php else : ?>
                               
                               <a href="<?php echo site_url('account/edit-gallery/'.$booking->gallery_id); ?>" class="btn btn-primary">Add Photos</a>
+                              <?php endif; ?>
+                              <?php else: ?>
+                              <?php if($booking->booking_status == 1) :?>
+                              <button class="btn btn-primary make-payment" data-toggle="modal" data-target=".payment-modal" data-booking-id = "<?php echo $booking->booking_id;?>"  data-booking-quote = "<?php echo $booking->booking_quote;?>" >Make Payment</button>					  <?php elseif($booking->booking_status == 4) :?>
+                              <p><b>Paid amount: </b><?php echo $booking->booking_quote?></p>
                               <?php endif; ?>
                               <?php endif; ?>
                           </div>

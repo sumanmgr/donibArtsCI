@@ -55,6 +55,10 @@ $route['logout'] = 'registration/logout';
 $route['portfolio'] = 'account/edit-gallery';
 $route['portfolio/(:any)'] = 'portfolio/index/$1';
 
+
+$route['booking'] = 'reservations';
+$route['booking/(:any)'] = 'reservations/$1';
+
 $route['admin/login'] = 'admin/users/login';
 $route['admin/logout'] = 'admin/users/logout';
 
