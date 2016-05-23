@@ -41,7 +41,7 @@
 					$this->db->insert('portfolio', array('PID'=>$newUser, 'galleryID'=>$galleryId));
 				}
 				
-				$this->db->insert('photographer', array('expertises'=>'', 'user_id'=> $newUser));
+				$this->db->insert('photographer', array('experties'=>'', 'user_id'=> $newUser));
 			}
 			
 			
