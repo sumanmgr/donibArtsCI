@@ -67,7 +67,7 @@
 				$this->db->update('photographer');
 			}
 			if($user->user_type == 'c'){
-				$this->db->set('reference', $datavalue);
+				$this->db->set('refrence', $datavalue);
 				$this->db->where('user_id',$user->user_id);
 				$this->db->update('customer' );
 			}
