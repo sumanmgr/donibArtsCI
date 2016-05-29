@@ -95,23 +95,26 @@
 							</div></div></div>
                  <!-- end of div -->
                 
-                			
-            <div class="grid-filters-wrapper">
-            
-                <a href="#" class="select-filter"><i class="fa fa-filter"></i> My Menu</a>
-                <ul class="">
-                  <li class="active"><a href="<?php echo site_url("home");?>" data-filter="*">My profile</a></li>
-                  <?php if($user->user_type == 'p') :?>
-                  <li class="active"><a href="<?php echo site_url("booking");?>" data-filter="*">Bookings</a></li>
-                  <li><a href="<?php echo site_url("portfolio");?>" data-filter=".web-design">Portfolio</a></li>
-                  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">View Gallery</a></li>
-                  <?php else : ?>
-                  <li class="active"><a href="<?php echo site_url("booking");?>" data-filter="*">My Bookings</a></li>
-                  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">My Gallery</a></li>
-                  <?php endif; ?>
-                  <li><a href="<?php echo site_url("logout");?>">Logout</a></li>
-                </ul>
-            </div>
+                	<?php if($this->session->has_userdata('user')) :
+                	$menuUser = $this->session->userdata['user'];
+                	 ?>
+			            <div class="grid-filters-wrapper">
+			            
+			                <a href="#" class="select-filter"><i class="fa fa-filter"></i> My Menu</a>
+			                <ul class="">
+			                  <li class="active"><a href="<?php echo site_url("home");?>" data-filter="*">My profile</a></li>
+			                  <?php if($menuUser->user_type == 'p') :?>
+			                  <li class="active"><a href="<?php echo site_url("booking");?>" data-filter="*">Bookings</a></li>
+			                  <li><a href="<?php echo site_url("portfolio");?>" data-filter=".web-design">Portfolio</a></li>
+			                  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">View Gallery</a></li>
+			                  <?php else : ?>
+			                  <li class="active"><a href="<?php echo site_url("booking");?>" data-filter="*">My Bookings</a></li>
+			                  <li><a href="<?php echo site_url("account/view-gallery");?>" data-filter=".web-design">My Gallery</a></li>
+			                  <?php endif; ?>
+			                  <li><a href="<?php echo site_url("logout");?>">Logout</a></li>
+			                </ul>
+			            </div>
+	        		<?php endif;?>
 						</div>
 					</div>
 				</div>

@@ -29,16 +29,19 @@
                               <p><b>Description : </b><?php echo $booking->booking_details; ?></p>
                               <p><b>Gallery Accessy Type : </b><?php echo ($booking->gallery_access_type) == 0  ? "Private" : "Public"; ?></p>
                               <?php if($user->user_type ==  'p' && $booking->booking_status == 1) : ?>
-                              <?php if( $booking->gallery_id == 0) :?>
-                              <a href="<?php echo site_url('account/create-gallery/'.$booking->booking_id); ?>" class="btn btn-primary">Create Gallery</a>
-                              <?php else : ?>
-                              
-                              <a href="<?php echo site_url('account/edit-gallery/'.$booking->gallery_id); ?>" class="btn btn-primary">Add Photos</a>
-                              <?php endif; ?>
+
                               <?php else: ?>
                               <?php if($booking->booking_status == 1) :?>
                               <button class="btn btn-primary make-payment" data-toggle="modal" data-target=".payment-modal" data-booking-id = "<?php echo $booking->booking_id;?>"  data-booking-quote = "<?php echo $booking->booking_quote;?>" >Make Payment</button>					  <?php elseif($booking->booking_status == 4) :?>
                               <p><b>Paid amount: </b><?php echo $booking->booking_quote?></p>
+                              <?php endif; ?>
+                              <?php endif; ?>
+                              <?php if($user->user_type ==  'p' && $booking->booking_status == 4) : ?>
+                              <?php if( $booking->gallery_id > 0) :?>
+                              <a href="<?php echo site_url('account/edit-gallery/'.$booking->gallery_id); ?>" class="btn btn-primary">Add Photos</a>
+                              <?php else : ?>
+                              <a href="<?php echo site_url('account/create-gallery/'.$booking->booking_id); ?>" class="btn btn-primary">Create Gallery</a>
+                              
                               <?php endif; ?>
                               <?php endif; ?>
                           </div>

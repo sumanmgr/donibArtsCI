@@ -90,5 +90,10 @@
 		$rewardPoint =  $query->row();	
 		return $rewardPoint;
 	}
+
+	function getUserByUsername($username){
+		$this->db->where('username', $username);
+		return $this->db->get('user')->result();
+	}
 }
 ?>

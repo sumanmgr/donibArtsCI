@@ -33,6 +33,7 @@
                                         <ul class="team-socials">
 											<li><a href="<?php echo site_url('reservations/book/'.$photographer->user_id);?>"><i class="fa fa-plus" data-toggle="tooltip" data-placement="left"  title="Book Now"></i></a></li>
                                             <li><a href="<?php echo site_url('portfolio/'.$photographer->user_id);?>"><i class="fa fa-camera" data-toggle="tooltip" data-placement="right"  title="View Gallery"></i></a></li>
+                                             <li><a href="<?php echo site_url('photographer/'.$photographer->user_id);?>"><i class="fa fa-eye" data-toggle="tooltip" data-placement="right"  title="View Profile"></i></a></li>
 										</ul>
 									</div>
 

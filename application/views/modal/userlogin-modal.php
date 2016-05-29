@@ -37,7 +37,7 @@
                               <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-4 control-label" name="username">Username</label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="username" class="form-control" id="inputPassword3" placeholder="Username">
+                                  <input type="text" name="username" class="form-control" id="inputUsername" placeholder="Username"> <span id="userAvailability"></span>
                                 </div>
                               </div>
                               <div class="form-group">
@@ -55,7 +55,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" id="registrationButton" class="btn btn-primary">Register</button>
                         </div>
                     </form>
               </div>

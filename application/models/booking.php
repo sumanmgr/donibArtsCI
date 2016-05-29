@@ -32,8 +32,7 @@
 	}
 
 	function getBookingByPhotographerDate($photogapherId, $start_date, $end_date){
-
-		$query = $this->db->query("SELECT * FROM booking where ($start_date > book_start_date_time AND $start_date <book_end_date_time) OR ($end_date > book_start_date_time AND $end_date < book_end_date_time) ");
+		$query = $this->db->query("SELECT * FROM booking WHERE (('$start_date' <= book_end_date_time AND '$start_date' >= book_start_date_time) OR ('$end_date' <= book_end_date_time AND '$end_date' >= book_start_date_time) OR ('$start_date' <= book_start_date_time AND '$end_date' >= book_end_date_time) OR  ('$start_date' >= book_start_date_time AND '$end_date' <= book_end_date_time) ) AND photographer_id = $photogapherId");
 		return $query->result();
 	
 	}
@@ -60,12 +59,23 @@
 	}
 	
 	function makePayment($apymentData){
+
+		$user = $this->session->userdata['user'];
+
+
 		$this->db->insert('payment', $apymentData);
 		if($this->db->affected_rows() > 0 ){
 			$this->db->set('booking_status',4);
 			$this->db->where('booking_id', $apymentData['booking_id']);
 			$this->db->update('booking');
 			if($this->db->affected_rows() > 0 ){
+
+
+				$query = $this->db->query("UPDATE customer SET reward_point = (reward_point+5) WHERE user_id = ".$user->user_id);
+
+
+				$this->db->query;
+
 				return true;	
 			}
 			else echo $this->db->last_query();

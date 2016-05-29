@@ -62,6 +62,8 @@ $route['booking/(:any)'] = 'reservations/$1';
 $route['admin/login'] = 'admin/users/login';
 $route['admin/logout'] = 'admin/users/logout';
 
+$route['photographer/(:any)'] = 'users/view_profile/$1';
+
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;

@@ -55,7 +55,7 @@
                               
 
                               <div class="form-group">
-                            <button type="submit" class="btn btn-primary float-right" name="book" value="bookPhotographer">Make Booking</button>
+                            <button type="submit" id="bookingButton" class="btn btn-primary float-right" name="book" value="bookPhotographer">Make Booking</button>
                             </div>
                     </form>
                     </div>

@@ -72,21 +72,52 @@
 		<!-- /JavaScript files -->
         <script>
 		$(function () {
-			jQuery('[data-toggle="tooltip"]').tooltip();
-		    jQuery('#datetimepicker, #datetimepicker2').datetimepicker();
+			$('[data-toggle="tooltip"]').tooltip();
+		    $('#datetimepicker, #datetimepicker2').datetimepicker();
 			$("[name='gallery_access']").bootstrapSwitch();
+
+
+			$('#registrationButton').prop("disabled", true);
+			$(document).on('keyup', '#inputUsername',function(){
+				username = $("#inputUsername").val();
+				$.post( "<?php echo site_url("users/checkUsernameAvailability"); ?>",{'username': username}, function( data ) {
+							cost = 0;
+							if(data == 'available'){
+								$('#userAvailability').html("<i class='fa fa-check'></i> Username available");
+								$('#registrationButton').prop("disabled", false);
+							}
+							else{
+								$('#userAvailability').html("<i class='fa fa-times'></i> Username not available");
+								$('#registrationButton').prop("disabled", true);
+							}
+							
+				});
+			})
+
+
 			<?php if(isset($photographer)) : ?>
+			$('#bookingButton').prop("disabled", true);
+
 			$(document).on('change', '#datetimepicker, #datetimepicker2',function(){
-				start_date = new Date($('#datetimepicker').val()).getTime();
-				end_date   = new Date($('#datetimepicker2').val()).getTime();
+				start_date = $('#datetimepicker').val();
+				end_date   = $('#datetimepicker2').val();
+				console.log(start_date);
+				
+				start_date_timestamp = new Date($('#datetimepicker').val()).getTime();
+				end_date_timestamp   = new Date($('#datetimepicker2').val()).getTime();
+				
 				current_time = new Date().getTime();
-				timediff = end_date - start_date;
-				if(start_date != NaN && end_date != NaN){
-					if(start_date > end_date || start_date < current_time){
+				timediff = end_date_timestamp - start_date_timestamp;
+
+				console.log(timediff);
+				if(start_date != "" && end_date != ""){
+					if(start_date_timestamp > end_date_timestamp || start_date_timestamp < current_time){
 						$('#bookingStatus').html('Invalid date');
+						$('#bookingButton').prop("disabled", true);
 					}
 					else if((timediff) < 10800000){ // 10800 == 3 hours
 						$('#bookingStatus').html('Booking must be done for at least 3 hours');
+						$('#bookingButton').prop("disabled", true);
 					}
 					else{
 						$.post( "<?php echo site_url("reservations/checkAvailability/".$photographer->user_id); ?>",{stime: start_date, etime: end_date}, function( data ) {
@@ -94,8 +125,9 @@
 							cost = 0;
 							if(data == 'available'){
 								cost = <?php echo $otherdata->perHourRate; ?> * ( timediff / 3600000 );
+								$('#bookingButton').prop("disabled", false);
 								 /* convert ms to hour*/	
-							$('#total_quote').val(cost);
+								$('#total_quote').val(cost);
 							}
 							
 						});
