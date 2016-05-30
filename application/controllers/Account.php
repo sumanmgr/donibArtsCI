@@ -177,6 +177,11 @@ class Account extends CI_Controller{
 					}
 					}			
 				}
+				$this->data['gallery'] = $this->gallery->getGallery($id);
+			
+				$this->data['photos']  =  $this->gallery->getPhotoByGallery($id);
+
+
 		  		$this->load->view('mainview', $this->data);
 		}
 		else echo 'selected gallerty does not exist.';

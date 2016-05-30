@@ -1,4 +1,7 @@
 
+			<?php if($this->session->has_userdata('user')) 
+                	$menuUser = $this->session->userdata['user'];
+            ?>
 		
     	<!-- Sidebar -->	
 		<div id="side-bar">
@@ -79,7 +82,9 @@
 										<ul class="team-socials">
 											<li><a href="http://www.facebook.com/<?php echo $user->facebook?>"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="http://www.instagram.com/<?php echo $user->instagram?>"><i class="fa fa-instagram"></i></a></li>
+											<?php if(isset($menuUser) && $menuUser->user_id == $user->user_id) : ?>
                                             <li> <a href="#" data-toggle="modal" data-target=".addPhoto-modal-lg"><i class="fa fa-plus" data-toggle="tooltip" data-placement="top"  title="Add Prfofile picture"></i></a></li>
+                                        	<?php endif; ?>
 										</ul>
 									</div>
 
@@ -95,8 +100,7 @@
 							</div></div></div>
                  <!-- end of div -->
                 
-                	<?php if($this->session->has_userdata('user')) :
-                	$menuUser = $this->session->userdata['user'];
+                	<?php if(isset($menuUser)) :
                 	 ?>
 			            <div class="grid-filters-wrapper">
 			            

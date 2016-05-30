@@ -15,6 +15,27 @@
                             </fieldset>
                           
                         </form>
+
+
+						<div class="grid-portfolio tj-lightbox-gallery same-ratio-items">
+                            
+                            
+                    		<?php foreach($photos as $photo) : ?>
+								<!-- Gallery Item -->		
+								<div class="gp-item tj-hover-5">
+									<a href="<?php echo site_url('uploads/'.$gallery->photographer_id.'/'.$gallery->gallery_id.'/'.$photo->file_name);?>"  class="lightbox-gallery-item">
+										<img src="<?php echo site_url('uploads/'.$gallery->photographer_id.'/'.$gallery->gallery_id.'/'.$photo->file_name);?>" alt="">
+										<!-- Item Overlay -->	
+										<div class="tj-overlay"></div>
+										<!-- /Item Overlay -->	
+									</a>
+								</div>
+                    
+		                    <?php endforeach;?>
+							</div>
+
+
+
                     </div>
 				</div>
 <script>

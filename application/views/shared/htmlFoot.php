@@ -52,9 +52,6 @@
 		<!-- smooth scroll -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendors/smoothscroll.js"></script>
 
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=en"></script>
-		<script type="text/javascript" src="assets/js/vendors/gmap3.min.js"></script>
-
 
 		<!-- Master Slider -->
 		<script src="<?php echo base_url(); ?>assets/masterslider/jquery.easing.min.js"></script>
@@ -68,6 +65,9 @@
 		
 		<!-- theme custom scripts -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=en"></script>
+		<script type="text/javascript" src="assets/js/vendors/gmap3.min.js"></script>
+
 
 		<!-- /JavaScript files -->
         <script>
@@ -141,6 +141,21 @@
 			$('#form-booking-id').val($(this).data('booking-id'));
 			$('#form-booking-quote').val($(this).data('booking-quote'));
 		})
+
+		jQuery.fn.scrollTo = function(elem, speed) { 
+		    $(this).animate({
+		        scrollTop:  $(this).scrollTop() - $(this).offset().top + $(elem).offset().top 
+		    }, speed == undefined ? 1000 : speed); 
+		    return this; 
+		};
+
+
+	$("body").on("click",".back-to-top",function(e){
+		e.preventDefault();
+		$(".page-wrapper").scrollTo(".scroll-destination", 2000); //custom animation speed 
+//		$(".page-main").scrollTo(".container", 2000); //custom animation speed 
+	});
+
         </script>	
 		
     </body>

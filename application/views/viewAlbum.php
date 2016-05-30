@@ -1,6 +1,6 @@
 
-				<div class="<?php if(isset($user)) echo "page-main ajax-element" ; ?>"><!-- page title -->
-					<div class="container">
+				<div class=" scroll-destination <?php if(isset($user)) echo "page-main ajax-element" ; ?>"><!-- page title -->
+					<div class="container ">
 					<h2 class="section-title double-title">
 						View Gallery
 					</h2>

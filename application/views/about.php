@@ -1,4 +1,4 @@
-				<div class="container">
+				<div class="container scroll-destination">
 
 					
 
@@ -40,7 +40,7 @@
 							<div class="col-md-4">
 								<div class="team-item">
 									<div class="team-head">
-										<img src="assets/img/team/01.jpg" alt="">
+										<img src="assets/img/team/binod.jpg" alt="">
 										<ul class="team-socials">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -49,8 +49,8 @@
 									</div>
 
 									<div class="team-content">
-										<h3 class="title">Cora Grimhilt</h3>
-										<h4 class="subtitle">Designer</h4>
+										<h3 class="title">Binod Ranabhat</h3>
+										<h4 class="subtitle">Developer</h4>
 									</div>
 									
 								</div>
@@ -58,7 +58,7 @@
 							<div class="col-md-4">
 								<div class="team-item">
 									<div class="team-head">
-										<img src="assets/img/team/02.jpg" alt="">
+										<img src="assets/img/team/sunita.jpg" alt="">
 										<ul class="team-socials">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -67,8 +67,8 @@
 									</div>
 
 									<div class="team-content">
-										<h3 class="title">Sachin Hudde</h3>
-										<h4 class="subtitle">Developer</h4>
+										<h3 class="title">Sunita Tiwari</h3>
+										<h4 class="subtitle">Designer</h4>
 									</div>
 									
 								</div>
@@ -77,7 +77,7 @@
 							<div class="col-md-4">
 								<div class="team-item">
 									<div class="team-head">
-										<img src="assets/img/team/03.jpg" alt="">
+										<img src="assets/img/team/sus.jpg" alt="">
 										<ul class="team-socials">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -86,8 +86,8 @@
 									</div>
 
 									<div class="team-content">
-										<h3 class="title">Ivana Rasima</h3>
-										<h4 class="subtitle">Money Counter</h4>
+										<h3 class="title">Sushmita Pandey</h3>
+										<h4 class="subtitle">Tester</h4>
 									</div>
 									
 								</div>
@@ -107,7 +107,7 @@
 										</h2>
 									</div>
 									<div class="col-md-2">
-										<a class="btn btn-toranj" href="#">Contact US</a>
+										<a class="btn btn-toranj" href="<?php echo site_url(); ?>contact">Contact US</a>
 									</div>
 								</div>
 							</div>
@@ -115,157 +115,8 @@
 					</div>
 
 
-					<!--/ team carousel -->
-					<div class="row mb-xlarge">
-						<div class="col-md-12">
-							<h2 class="bordered">Team Carousel</h2>
-							<div class="ms-staff-carousel">
-							    <!-- masterslider -->
-							    <div class="master-slider" id="teamcarousel">
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/01.jpg" alt="lorem ipsum dolor sit"/> 
-							            <div class="ms-info">
-							                <h3>Siet Maitland</h3>
-							                <h4>COMPANY CEO</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>    
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/02.jpg" alt="lorem ipsum dolor sit"/>    
-							              <div class="ms-info">
-							                <h3>Chinweuba Geirr</h3>
-							                <h4>PROGRAMMER</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>    
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/03.jpg" alt="lorem ipsum dolor sit"/>
-							              <div class="ms-info">
-							                <h3>Pejo Carlos</h3>
-							                <h4>WEB DEVELOPER</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>            
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/04.jpg" alt="lorem ipsum dolor sit"/>
-							             <div class="ms-info">
-							                <h3>Ramessu Olegário</h3>
-							                <h4>UI DESIGNER</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>           
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/05.jpg" alt="lorem ipsum dolor sit"/>
-							             <div class="ms-info">
-							                <h3>Talaat Áleifr</h3>
-							                <h4>DEVELOPER</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>             
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/06.jpg" alt="lorem ipsum dolor sit"/>
-							             <div class="ms-info">
-							                <h3>Matan Alfonso</h3>
-							                <h4>COMPANY CEO</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>          
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/07.jpg" alt="lorem ipsum dolor sit"/> 
-							             <div class="ms-info">
-							                <h3>Kevyn Dimas</h3>
-							                <h4>IT MANAGER</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>    
-							        </div>
-							         <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/08.jpg" alt="lorem ipsum dolor sit"/> 
-							             <div class="ms-info">
-							                <h3>Simcha Kepheus</h3>
-							                <h4>SYSTEM ADMIN</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>    
-							        </div>
-							        <div class="ms-slide">
-							            <img src="assets/masterslider/blank.gif" data-src="assets/img/team/09.jpg" alt="lorem ipsum dolor sit"/> 
-							             <div class="ms-info">
-							                <h3>Willabert Duncan</h3>
-							                <h4>REVIEWER</h4>
-							                <ul class="social-icons">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-												<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-											</ul>
-							            </div>    
-							        </div>
-							    </div>
-							    <!-- end of masterslider -->
-							    <div class="ms-staff-info" id="teamcarousel-info"> </div>
-							</div>
-						</div>
-					</div>
-					<!--/ team carousel -->
 
 
 					<hr/>
-					<a class="back-to-top" href="#"></a>
+					<a class="back-to-top" href="#top"></a>
 				</div>

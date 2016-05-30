@@ -3,6 +3,7 @@ class Users extends CI_Controller{
 	function __construct(){
         parent::__construct();
         $this->load->model('user');
+        $this->load->model('gallery');
 	}
 	function checkUsernameAvailability()
 	{
@@ -13,9 +14,17 @@ class Users extends CI_Controller{
 	}
 	function view_profile($id = 0){
 		$data = array();
-		$data['user'] = $this->user->getUserById($id);
+
+		$data['user']      = $this->user->getUserById($id);
+		$data['portfolio'] = $this->gallery->getPhotographerPortfolioId($id);
+		$data['slides']    = $this->gallery->getPhotoByGallery($data['portfolio']);
+		$data['galleries'] = $this->gallery->getPublicPhotographerGalleries($id, 3);
+			
+		for($i = 0 ; $i<count($data['galleries']); $i++){
+			$data['galleries'][$i]->photo = $this->gallery->getRandomPhoto($data['galleries'][$i]->gallery_id);
+		}
 		$data['otherdata'] = $this->user->getOtherDetail($data['user']);
-		$data['page'] = 'logged_home';
+		$data['page']      = 'logged_home';
 	  	$this->load->view('mainview', $data);
 	}
 }

@@ -27,3 +27,8 @@ body{font-family:ralewayregular,sans-serif;font-size:14px;background:#fafaf5;ove
 .page-main.ajax-element > .container{
 	width: auto;
 }
+
+.ajax-portfolio{
+	height: 180px;
+	overflow: hidden;
+ }

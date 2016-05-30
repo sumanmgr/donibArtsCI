@@ -14,7 +14,7 @@
          <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-switch.min.css">
 
     </head>
-    <body>
+    <body id="top">
 
 		<a href="#" id="menu-toggle-wrapper">
 			<div id="menu-toggle"></div>	

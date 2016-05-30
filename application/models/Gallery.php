@@ -36,13 +36,19 @@ class Gallery extends CI_Model{
 		$query = $this->db->get('gallery');
 		return $query->result();
 	}
-	function getPublicPhotographerGalleries($photographerId){
+	function getPublicPhotographerGalleries($photographerId, $limit = 0){
 		$this->db->select('gallery.*');
 		$this->db->from('gallery');
 		$this->db->join('customergallery', 'gallery.gallery_id = customergallery.galleryID');
 		$this->db->join('booking', 'customergallery.bookingId = booking.booking_id');
-		$this->db->where('booking.gallery_access_type', 0); // public gallery
+		$this->db->where('booking.gallery_access_type', 1); // public gallery
 		$this->db->where('booking.photographer_id', $photographerId);
+	
+		if($limit > 0){
+				$this->db->limit( $limit, 0);
+		}
+
+		$this->db->order_by('booking.booking_date_time', 'DESC');
 		return $this->db->get()->result();
 	}
 	function getCustomerGalleries($customerId){

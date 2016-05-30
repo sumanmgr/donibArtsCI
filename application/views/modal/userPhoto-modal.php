@@ -11,6 +11,7 @@
                                   <input type="file" class="form-control" name="profilePic" id="pp" placeholder="Choose A Photo">
                                 </div>
                               </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" name ="post" value="addPhoto" class="btn btn-primary">Upload</button>
                         </div>

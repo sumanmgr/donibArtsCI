@@ -3,14 +3,22 @@ class Home extends CI_Controller {
  
   function index(){
 	$this->load->model('user');
+	$this->load->model('gallery');
 	
   	$data=array(
   	);
 
 	if($this->session->has_userdata('user')){
 		$data['user']      = $this->session->userdata['user'];
-		$data['otherdata'] = $this->user->getOtherDetail($data['user']);
-		
+		if($data['user']->user_type == 'p'):
+			$data['portfolio'] = $this->gallery->getPhotographerPortfolioId($data['user']->user_id);
+			$data['slides']    = $this->gallery->getPhotoByGallery($data['portfolio']);
+			$data['galleries'] = $this->gallery->getPublicPhotographerGalleries($data['user']->user_id, 3);
+			for($i = 0 ; $i<count($data['galleries']); $i++){
+				$data['galleries'][$i]->photo = $this->gallery->getRandomPhoto($data['galleries'][$i]->gallery_id);
+			}
+		endif;
+
 		if($this->input->post('update')=='post'){
 						
 			$user = array(
@@ -37,6 +45,7 @@ class Home extends CI_Controller {
 			}
 		}
 		
+		$data['otherdata'] = $this->user->getOtherDetail($data['user']);
 		$data['modal'] = 'editProfile-modal';		
 		$data['page'] = 'logged_home';
 		if($data['user']->user_type == 'c'){ 

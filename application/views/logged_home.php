@@ -1,7 +1,11 @@
 
+			<?php if($this->session->has_userdata('user')) 
+                	$menuUser = $this->session->userdata['user'];
+            ?>
+		
 
 				<!-- Main Contents -->
-				<div class="page-main ajax-element"><!-- page title -->
+				<div class="page-main ajax-element scroll-destination"><!-- page title -->
 					<div class="çontainer no-row-margin">
 					<h2 class="section-title double-title">
 						<span></span>Project Name
@@ -10,36 +14,32 @@
 
 	
 					<div class="row mb-large">
-						
 						<div class="col-md-8">
+						<?php if($user->user_type == 'p') : ?>						
 							  <!-- masterslider -->
 					        	<div class="tj-ms-slider ms-skin-toranj" data-autoheight="true" id="masterslider">
-						            <div class="ms-slide">
-						                <img src="../assets/masterslider/blank.gif" data-src="assets/img/home/01.jpg" alt="lorem ipsum dolor sit"/>
-						                
-						            </div>
-						            <div class="ms-slide">
-						                <img src="../assets/masterslider/blank.gif" data-src="assets/img/home/02.jpg" alt="lorem ipsum dolor sit"/>    
-						                
-						            </div>
-						            <div class="ms-slide">
-						                <img src="../assets/masterslider/blank.gif" data-src="assets/img/home/03.jpg" alt="lorem ipsum dolor sit"/>   
-						                 
-						            </div>
-						            <div class="ms-slide">
-						                <img src="../assets/masterslider/blank.gif" data-src="assets/img/home/04.jpg" alt="lorem ipsum dolor sit"/>   
-						                
-						            </div>
-						            <div class="ms-slide">
-						                <img src="../assets/masterslider/blank.gif" data-src="assets/img/home/05.jpg" alt="lorem ipsum dolor sit"/>               
-						            </div>
+
+					        		<?php if(count($slides) > 0) : 
+					        				foreach($slides as $photo) :?>
+						            			<div class="ms-slide">
+								               		<img src="../assets/masterslider/blank.gif" data-src="<?php echo site_url('uploads/'.$user->user_id.'/'.$portfolio.'/'.$photo->file_name);?>" alt="lorem ipsum dolor sit"/>
+									            </div>
+					        		<?php 
+					        				endforeach;
+					        			endif; ?>
 						        </div>
 						        <!-- end of masterslider -->
-
+						<?php endif; ?>
 						</div>
 
 						<div class="col-md-4">
-							<h3 class="bordered">Profile Details <a href="#" class="" data-toggle="modal" data-target=".editProfileModal" ><i class="fa fa-edit"></i> Edit</a></h3>
+							<h3 class="bordered">
+								Profile Details
+
+								<?php if(isset($menuUser) && $menuUser->user_id == $user->user_id) : ?>
+									<a href="#" class="" data-toggle="modal" data-target=".editProfileModal" ><i class="fa fa-edit"></i> Edit</a>
+								<?php endif; ?>
+							</h3>
 							<ul class="list-items">
 								<li>
 									<div class="list-label">Full Name</div>
@@ -95,54 +95,45 @@
 					</div>
 
 					<!-- related works -->
+					<?php if($user->user_type == 'p') : ?>
 					<hr/>
 					<div class="widget">
 						<div class="widget-title">
 							<h4 class="bordered">Related Works</h4>
 						</div>
 						<div class="row">
+						<?php 
+						$count=0;
+
+						foreach($galleries as $gallery) : ?>
+
 							<div class="col-md-4">
 								<div class="tj-hover-1">
-									<a href="portfolio-item.html" class="ajax-portfolio normal">
-										<img src="assets/img/portfolio/grid/14.jpg" alt="alt" class="img-responsive">
+									<a href="<?php echo site_url('account/view-gallery/'.$gallery->gallery_id); ?>" class="ajax-portfolio normal">
 										<!-- Item Overlay -->	
+	                                    	<?php if($gallery->photo) : ?>
+											<img src="<?php echo site_url('uploads/'.$gallery->photographer_id.'/'.$gallery->gallery_id.'/'.$gallery->photo->file_name);?>"  alt="<?php echo $gallery->gallery_name?>" class="img-responsive">
+	                                        <?php endif;?>
+
+
 										<div class="tj-overlay">
-											<h3 class="title">Project title</h3>
-											<h4 class="subtitle">Short description of the project and about it</h4>
+											<h3 class="title"><?php echo $gallery->gallery_name?></h3>
+											<h4 class="subtitle"><?php echo $gallery->gallery_description?></h4>
 										</div>
 										<!-- /Item Overlay -->	
 									</a>
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="tj-hover-1">
-									<a href="portfolio-item.html" class="ajax-portfolio normal">
-										<img src="assets/img/portfolio/grid/10.jpg" alt="alt" class="img-responsive">
-										<!-- Item Overlay -->	
-										<div class="tj-overlay">
-											<h3 class="title">Project title</h3>
-											<h4 class="subtitle">Short description of the project and about it</h4>
-										</div>
-										<!-- /Item Overlay -->	
-									</a>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="tj-hover-1">
-									<a href="portfolio-item.html" class="ajax-portfolio normal">
-										<img src="assets/img/portfolio/grid/13.jpg" alt="alt" class="img-responsive">
-										<!-- Item Overlay -->	
-										<div class="tj-overlay">
-											<h3 class="title">Project title</h3>
-											<h4 class="subtitle">Short description of the project and about it</h4>
-										</div>
-										<!-- /Item Overlay -->	
-									</a>
-								</div>
-							</div>
+						
+
+	                    <?php
+	                    endforeach;?>
+
+	                    <!--test -->
 							
 						</div>
 					</div>
+				<?php endif; ?>
 					<!-- /related works -->
 
 					<hr/>

@@ -1,6 +1,6 @@
 
 			<div class="page-wrapper regular-page">
-				<div class="container">
+				<div class="container scroll-destination">
 
 					<div class="row">
 						<div class="col-md-3">
