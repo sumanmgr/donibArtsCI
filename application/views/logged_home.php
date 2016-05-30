@@ -1,6 +1,15 @@
 
-			<?php if($this->session->has_userdata('user')) 
-                	$menuUser = $this->session->userdata['user'];
+			<?php 	if($this->session->has_userdata('user')) {
+			        	$menuUser = $this->session->userdata['user'];
+			        }
+
+				$reference_values = array(
+					'f' => 'friend',
+					'n' => 'newspaper',
+					'fa' => 'facebook',
+					'g' => 'google',
+					'o' => 'other'
+				);
             ?>
 		
 
@@ -79,7 +88,7 @@
 								</li>
 	                           <li>
 									<div class="list-label">Refrence</div><!-- from customer table -->
-									<div class="list-des"><?php echo $rewardData->refrence?></div>
+									<div class="list-des"><?php echo $reference_values[$rewardData->refrence]?></div>
 								</li>
                                 <?php endif; ?>
 							</ul>

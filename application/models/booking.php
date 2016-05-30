@@ -58,15 +58,15 @@
 			return false;
 	}
 	
-	function makePayment($apymentData){
+	function makePayment($paymentData){
 
 		$user = $this->session->userdata['user'];
 
 
-		$this->db->insert('payment', $apymentData);
+		$this->db->insert('payment', $paymentData);
 		if($this->db->affected_rows() > 0 ){
 			$this->db->set('booking_status',4);
-			$this->db->where('booking_id', $apymentData['booking_id']);
+			$this->db->where('booking_id', $paymentData['booking_id']);
 			$this->db->update('booking');
 			if($this->db->affected_rows() > 0 ){
 

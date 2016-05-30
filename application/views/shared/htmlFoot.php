@@ -94,6 +94,19 @@
 				});
 			})
 
+			<?php if(! ($this->session->has_userdata('user') ) ) : ?>
+				$('#loginForm').submit( function(e){
+					e.preventDefault();
+					$.post( "<?php echo site_url("users/login/"); ?>",{'username': $('#usernameInput').val(), 'password': $('#passwordInput').val() }, function( data ) {
+							if(data == 'logged'){
+								location.reload();
+							}
+							else{
+								$('#loginInfo').html('<i class="fa fa-times"></i> ' +data);
+							}
+						});
+				})
+			<?php endif; ?>
 
 			<?php if(isset($photographer)) : ?>
 			$('#bookingButton').prop("disabled", true);

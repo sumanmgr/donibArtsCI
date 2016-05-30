@@ -164,14 +164,15 @@ class Account extends CI_Controller{
 					$_FILES['fileToUpload']['size']= $files['filesToUpload']['size'][$i];    			
 					if ( ! $this->upload->do_upload('fileToUpload'))
 					{
-							$error = array('error' => $this->upload->display_errors());
+							$this->data['error'] = array('error' => $this->upload->display_errors());
 	
 //							$this->load->view('upload_form', $error);
-						var_dump($error);
+						
 					}
 					else
 					{
 							$photoData = $this->upload->data();
+							$this->data['imagesuccess'] = " images added successfully";
 							$this->gallery->savePhoto($gallery->gallery_id, $photoData['file_name']);
 	//						$this->load->view('upload_success', $data);
 					}
