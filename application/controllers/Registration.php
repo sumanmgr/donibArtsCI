@@ -10,17 +10,15 @@ class Registration extends CI_Controller{
  function index(){
 
  	$this->load->library('form_validation');
-
 	$this->form_validation->set_rules('first_name', 'First name', 'required');
 	$this->form_validation->set_rules('last_name', 'Last name', 'required');
-	$this->form_validation->set_rules('email', 'Email', 'required');			
-	$this->form_validation->set_rules('username', 'Username', 'required');
-	$this->form_validation->set_rules('password', 'Password', 'required|matches[password_confirm]');
+	$this->form_validation->set_rules('email', 'Email', 'required|valid_email');			
+	$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric|is_unique[user.username]');
+	$this->form_validation->set_rules('password', 'Password', 'required|matches[password_confirm]|min_length[8]');
 	$this->form_validation->set_rules('password_confirm', 'Confirmation Password', 'required');
 	
 	if ($this->form_validation->run() == FALSE){
      	echo validation_errors(); die();
-
     }
     else{	
 	 	$newUser = array(
@@ -34,19 +32,11 @@ class Registration extends CI_Controller{
 	 	$newUserId = $this->user->addUser($newUser);
 
 	 	if($newUserId > 0){
-	 	//	$this->session->set_userdata($user);
-	 		redirect('registration/success');
+	 		echo "registerd";
 	 	}
+	 	else echo "Registration not complete please try again later";
     }
-
-
-
-/*	$this->load->view('admin/shared/htmlHead');
-	$this->load->view('admin/shared/navbar');
-	$this->load->view('admin/shared/sidemenu');
-	$this->load->view('admin/home');
-	$this->load->view('admin/shared/htmlFoot');
-*/ }
+ }
 
   function success(){
 	$this->load->view('shared/htmlHead');

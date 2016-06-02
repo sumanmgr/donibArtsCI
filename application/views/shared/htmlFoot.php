@@ -10,12 +10,6 @@
 		?>
 		<!-- JavaScript files -->	
 
-		<!-- jquery core -->
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendors/jquery-1.11.0.min.js"></script>
-
-		<!-- Bootstrap Js -->
-	    <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/bootstrap.min.js"></script>
-
 		<!-- imagesLoaded jquery plugin -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendors/imagesloaded.pkgd.min.js"></script>
 		
@@ -78,7 +72,7 @@
 
 
 			$('#registrationButton').prop("disabled", true);
-			$(document).on('keyup', '#inputUsername',function(){
+			$(document).on('keyup', '#reg_username',function(){
 				username = $("#inputUsername").val();
 				$.post( "<?php echo site_url("users/checkUsernameAvailability"); ?>",{'username': username}, function( data ) {
 							cost = 0;
@@ -94,19 +88,6 @@
 				});
 			})
 
-			<?php if(! ($this->session->has_userdata('user') ) ) : ?>
-				$('#loginForm').submit( function(e){
-					e.preventDefault();
-					$.post( "<?php echo site_url("users/login/"); ?>",{'username': $('#usernameInput').val(), 'password': $('#passwordInput').val() }, function( data ) {
-							if(data == 'logged'){
-								location.reload();
-							}
-							else{
-								$('#loginInfo').html('<i class="fa fa-times"></i> ' +data);
-							}
-						});
-				})
-			<?php endif; ?>
 
 			<?php if(isset($photographer)) : ?>
 			$('#bookingButton').prop("disabled", true);

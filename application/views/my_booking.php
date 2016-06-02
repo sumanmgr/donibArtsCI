@@ -1,6 +1,13 @@
         <div class="page-main"><!-- page title -->
           <div class="container-fluid">
           <h2>My Booking</h2>
+          <?php if($this->session->flashdata('booking')) : ?> 
+          <div class="alert alert-success alert-dismissible fade in" role="alert"> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> 
+            <p><i class="fa fa-check"></i> Your selected photograhper has been booked successfully.</p>
+          </div>
+          <?php endif; ?>
+
 		          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                       <?php	  
 					  $booking_status_values = array("Booking Pending", "Booking Accepted", "Cancelled By Customer", "Rejected By Photographer", "Booking Confirmed");

@@ -22,20 +22,35 @@ class Reservations extends CI_Controller{
 		$this->data['photographer'] = $this->user->getPhotographerById($photographerId);
 		$this->data['otherdata'] = $this->user->getOtherDetail($this->data['photographer']);
 		
-		if($this->input->post('book') == 'bookPhotographer'){
-			$bookingDetail = array(
-				'book_start_date_time' => $this->input->post('startDateTime'),
-				'book_end_date_time'   => $this->input->post('endDateTime'),
-				'booking_status'       => 0,
-				'booking_title'        => $this->input->post('bookingTitle'),
-				'customer_id'          => $this->data['user']->user_id,
-				'photographer_id'      => $this->input->post('photographer_id'),
-				'booking_details'      => $this->input->post('bookingDescription'),
-				'gallery_access_type'  => isset($_POST['gallery_access']) ? 1 : 0,
-				'booking_quote'        => $this->input->post('total_quote')
-			);
-			$bookingId = $this->booking->saveBooking($bookingDetail);
-			redirect(site_url('booking'));
+		if($this->input->post('photographer_id') > 0){
+		 	$this->load->library('form_validation');
+			$this->form_validation->set_rules('bookingTitle', 'Booking Title', 'required');
+			$this->form_validation->set_rules('book_start_date_time', 'Booking Date start time', 'required');
+			$this->form_validation->set_rules('book_end_date_time', 'Booking Date end time', 'required|valid_email');			
+			
+			if ($this->form_validation->run() == FALSE){
+		     	echo validation_errors(); die();
+		    }
+		    else{	
+				$bookingDetail = array(
+					'book_start_date_time' => $this->input->post('startDateTime'),
+					'book_end_date_time'   => $this->input->post('endDateTime'),
+					'booking_status'       => 0,
+					'booking_title'        => $this->input->post('bookingTitle'),
+					'customer_id'          => $this->data['user']->user_id,
+					'photographer_id'      => $this->input->post('photographer_id'),
+					'booking_details'      => $this->input->post('bookingDescription'),
+					'gallery_access_type'  => isset($_POST['gallery_access']) ? 1 : 0,
+					'booking_quote'        => $this->input->post('total_quote')
+				);
+				$bookingId = $this->booking->saveBooking($bookingDetail);
+				if($bookingId > 0 ) {
+					echo "success";
+					$this->session->set_flashdata('booking', 'success.');
+				}
+				else echo "An error occured while booking your selected photograper. <br /> Please try again later";
+				die();
+			}
 		}
 		
   		$this->load->view('mainview', $this->data);
