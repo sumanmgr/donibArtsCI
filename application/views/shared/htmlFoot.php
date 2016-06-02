@@ -73,7 +73,7 @@
 
 			$('#registrationButton').prop("disabled", true);
 			$(document).on('keyup', '#reg_username',function(){
-				username = $("#inputUsername").val();
+				username = $("#reg_username").val();
 				$.post( "<?php echo site_url("users/checkUsernameAvailability"); ?>",{'username': username}, function( data ) {
 							cost = 0;
 							if(data == 'available'){
