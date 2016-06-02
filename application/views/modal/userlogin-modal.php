@@ -133,7 +133,7 @@
             },
             function( data ) {
               if(data == 'registered'){
-                location.reload();
+                window.location.href = "<?php echo site_url("registration/success")?>";
               }
               else{
                 $('#regInfo').html('<i class="fa fa-times"></i> ' +data);
