@@ -18,7 +18,7 @@ $reference_values = array(
 <div class="page-main ajax-element scroll-destination"><!-- page title -->
     <div class="çontainer no-row-margin">
         <h2 class="section-title double-title">
-            <span></span>Project Name
+            <span></span><?php echo $user->fullname?>
         </h2>
         <!--/ page title -->
 
